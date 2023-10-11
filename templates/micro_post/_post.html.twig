@@ -1,0 +1,30 @@
+<div class="mb-4">
+	<div class="text-xl">
+		<a href="{{ path('app_micro_post_one', {post: post.id}) }}">{{ post.title }}</a>
+	</div>
+	<div class="text-md text-gray-700 dark:text-gray-400">{{ post.text }}</div>
+	<div class="text-sm text-gray-400">{{ post.created|date('d.m.y') }}</div>
+	<div class="text-sm text-gray-400">
+		{% if post.likedBy.contains(app.user) %}
+			<a href="{{ path('app_unlike', { id:post.id }) }}">
+				<span class="mr-1">Unike</span>
+				<span class="border bg-gray-300 px-1 text-black">{{ post.likedBy.count }}</span>
+			</a>
+		{% else %}
+			<a href="{{ path('app_like', { id:post.id }) }}">
+				<span class="mr-1">Like</span>
+				<span class="border bg-gray-300 px-1 text-black">{{ post.likedBy.count }}</span>
+			</a>
+		{% endif %}
+	</div>
+	<div class="text-sm text-gray-800 flex items-center gap-3 my-2">
+		{{ include('shared/_avatar.html.twig', {size:8, profile:post.author.userProfile})}}
+		<a href="{{ path('app_profile', {id: post.author.id}) }}">{{ post.author.userProfile.name ?? post.author.email }}</a>
+	</div>
+	<div class="mt-2 w-max text-sm ">
+		<a class="py-1 px-2 inline-block border border-gray-800 rounded-md hover:bg-gray-700 hover:text-gray-200" href="{{ path('app_micro_post_edit', {post:post.id}) }}">Edit post</a>
+		<a class="py-1 px-2 inline-block border border-gray-800 rounded-md hover:bg-gray-700 hover:text-gray-200" href="{{ path('app_micro_post_comment', {post:post.id}) }}">Add Comment
+			<span class="border bg-gray-300 px-1 text-black">{{ post.comments.count }}</span>
+		</a>
+	</div>
+</div>

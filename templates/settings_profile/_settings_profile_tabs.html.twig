@@ -1,0 +1,22 @@
+<div class="border-b border-gray-300 mb-4">
+	{% embed "shared/_tabs.html.twig" %}
+		{% block tabs %}
+			{% embed "shared/_tab.html.twig" with {route: 'app_settings_profile'} %}
+				{% block path %}
+					{{ path('app_settings_profile')}}
+				{% endblock %}
+				{% block content %}Profile Settings
+				{% endblock %}
+			{% endembed %}
+
+			{% embed "shared/_tab.html.twig" with {route: 'app_settings_profile_image'} %}
+				{% block path %}
+					{{ path('app_settings_profile_image')}}
+				{% endblock %}
+				{% block content %}Profile Image
+				{% endblock %}
+			{% endembed %}
+
+		{% endblock %}
+	{% endembed %}
+</div>

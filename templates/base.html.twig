@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html class="darkx">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>"> {% block stylesheets %}{% endblock %}{% block javascripts %}{% endblock %}
+
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script>
+			tailwind.config = {
+darkMode: 'class'
+}
+		</script>
+	</head>
+	<body class="w-full md:w-2/3 mx-auto mt-10 bg-gray-100 dark:bg-gray-800 dark:text-white">
+		<div class="flex justify-between items-center">
+			<h1 class="text-2xl mb-5 font-bold">WELCOME</h1>
+			<div class="text-right text-sm text-gray-600 ">
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<a href="{{ path('app_micro_post_add') }}" class="border border-gray-800 py-2 px-4 rounded-md hover:bg-gray-700 hover:text-gray-200">Add post</a>
+					<a href="{{ path('app_settings_profile') }}" class="border border-gray-800 py-2 px-4 rounded-md hover:bg-gray-700 hover:text-gray-200">Profile</a>
+					<a href="{{ path('app_logout') }}" class="border border-gray-800 py-2 px-4 rounded-md hover:bg-gray-700 hover:text-gray-200">Logout</a>
+				{% else %}
+					<a href="{{ path('app_login') }}" class="border border-gray-800 py-2 px-4 rounded-md hover:bg-gray-700 hover:text-gray-200">Login</a>
+					<a href="{{ path('app_register') }}" class="border border-gray-800 py-2 px-4 ml-2 rounded-md hover:bg-gray-700 hover:text-gray-200">Register</a>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="text-sm mb-5">
+			<a href="{{ path('app_micro_post') }}">Home</a>
+			{% block bread %}{% endblock %}
+		</div>
+
+		{% for message in app.flashes('success') %}
+			<div class="rounded-md border border-green-600 bg-green-200 px-2 py-1 mb-4">{{message}}</div>
+		{% endfor %}
+
+		{% block body %}{% endblock %}
+	</body>
+</html>

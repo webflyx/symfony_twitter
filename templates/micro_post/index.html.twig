@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Posts
+{% endblock %}
+
+{% block body %}
+
+{{ include("micro_post/_tabs.html.twig", {posts: posts}) }}
+{{ include("micro_post/_tab_posts.html.twig", {posts: posts}) }}
+
+{% endblock %}

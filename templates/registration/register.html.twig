@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block bread %}
+	-> Register
+{% endblock %}
+
+{% block body %}
+
+	<div class="border-b-2 border-gray-200 mb-5 pb-1">
+		<h1 class="text-xl ">Basic information</h1>
+	</div>
+
+	{% for flash_error in app.flashes('verify_email_error') %}
+		<div class="rounded-md border border-red-600 bg-red-200 px-2 py-1" role="alert">{{ flash_error }}</div>
+	{% endfor %}
+
+	{{ form_errors(registrationForm) }}
+
+	{{ form_start(registrationForm) }}
+	<div>
+		{{ form_label(registrationForm.email, 'Enter Email', {'label_attr':{'class':'block text-sm text-gray-700 font-medium'}}) }}
+		{{ form_widget(registrationForm.email, { 'attr': {'class': 'block w-full shadow-sm border-gray-300 mt-1 p-2'} })}}
+		{{ form_errors(registrationForm.email) }}
+	</div>
+	<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+		<div class="mt-2">
+			{{ form_label(registrationForm.plainPassword.first, 'Enter Password', {'label_attr':{'class':'block text-sm text-gray-700 font-medium'}}) }}
+			{{ form_widget(registrationForm.plainPassword.first, { 'attr': {'class': 'block w-full shadow-sm border-gray-300 mt-1 p-2'} })}}
+			{{ form_errors(registrationForm.plainPassword.first) }}
+		</div>
+		<div class="mt-2">
+			{{ form_label(registrationForm.plainPassword.second, 'Repeat Password', {'label_attr':{'class':'block text-sm text-gray-700 font-medium'}}) }}
+			{{ form_widget(registrationForm.plainPassword.second, { 'attr': {'class': 'block w-full shadow-sm border-gray-300 mt-1 p-2'} })}}
+			{{ form_errors(registrationForm.plainPassword.second) }}
+		</div>
+	</div>
+	<div class="mt-2 flex">
+		{{ form_widget(registrationForm.agreeTerms, { 'attr': {'class': 'block p-2 mr-2'} })}}
+		{{ form_label(registrationForm.agreeTerms, 'Agree Terms', {'label_attr':{'class':'block text-sm text-gray-700 font-medium'}}) }}
+		{{ form_errors(registrationForm.agreeTerms) }}
+	</div>
+	
+
+	<div class="border-b-2 mt-10 pt-2 border-gray-200 mb-5 pb-1">
+		<h2 class="text-xl ">Profile information</h2>
+	</div>
+
+	{{ include('settings_profile/_profile_form.html.twig', {form: registrationForm.userProfile}) }}
+
+
+	<button type="submit" class="mt-4 text-white py-2 	block w-full border-transparent bg-indigo-600 hover:bg-indigo-500">Register</button>
+	{{ form_end(registrationForm) }}
+	<div class="mt-2 text-center">
+		<span>Already have account?</span>
+		<a class="font-bold" href="{{ path('app_login') }}">Login</a>
+	</div>
+
+{% endblock %}

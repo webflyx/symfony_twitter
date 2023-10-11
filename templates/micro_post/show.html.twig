@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post -
+	{{ post.title }}
+{% endblock %}
+
+{% block bread %}
+-> {{ post.title }}
+{% endblock %}
+
+{% block body %}
+	{{ include ("micro_post/_post.html.twig", {post:post}) }}
+
+	<div class="mt-4">
+	{% for comment in post.comments %}
+		<div class="flex items-center">
+			<div class="flex items-center w-12 h-12 border-2 border-gray-800 rounded-full bg-gray-200 dark:bg-gray-700">
+				{{ include('shared/_avatar.html.twig', {size:12, profile:post.author.userProfile})}}
+			</div>
+			<a href="{{ path('app_profile', {id:comment.author.id}) }}" class="ml-3">
+				<div class="text-sm"> {{ comment.author.email }}</div>
+				<div class="text-xs text-gray-500">{{ comment.created | date('d.m.Y') }}</div>
+			</a>
+		</div>
+		<div class="pt-4 pb-8 px-4 border-l-2 ml-6 my-2 {% if loop.last %} border-transparent {% else %} border-gray-300 {% endif %}" >{{ comment.text }}</div>
+	{% endfor %}
+	
+	</div>
+{% endblock %}

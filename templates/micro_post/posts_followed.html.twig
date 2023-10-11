@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Followed
+{% endblock %}
+
+{% block bread %}
+-> Followed
+{% endblock %}
+
+{% block body %}
+
+{{ include("micro_post/_tabs.html.twig", {posts: posts}) }}
+{{ include("micro_post/_tab_posts.html.twig", {posts: posts}) }}
+
+{% endblock %}

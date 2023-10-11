@@ -1,0 +1,27 @@
+{{ form_start(form, {"attr": {'novalidate':'novalidate'}}) }}
+<div>{{ form_errors(form) }}</div>
+
+<div class="mb-3">
+	{{ form_label(form.title, 'Enter Title', {'label_attr':{'class':'block text-sm text-gray-700 font-medium'}}) }}
+	{{ form_widget(form.title, { 'attr': {'class': 'block w-full shadow-sm border-gray-300 mt-1 p-2'} })}}
+	{{ form_errors(form.title) }}
+</div>
+
+<div>
+	{{ form_label(form.text, 'Enter Text', {'label_attr':{'class':'block text-sm text-gray-700 font-medium'}}) }}
+	{{ form_widget(form.text, { 'attr': {'class': 'block w-full shadow-sm border-gray-300 mt-1 p-2'} })}}
+	{{ form_errors(form.text) }}
+</div>
+
+<div class="mt-2 flex flex-wrap">
+	{{ form_widget(form.extraPrivacy, { 'attr': {'class': 'block p-2 mr-2'} })}}
+	{{ form_label(form.extraPrivacy, 'I want extra privacy', {'label_attr':{'class':'block text-sm text-gray-700 font-medium'}}) }}
+	{{ form_errors(form.extraPrivacy) }}
+	<div class="text-gray-400 basis-full text-sm">This post can only be seen by the people that you follow</div>
+</div>
+
+<div>
+	<button type="submit" class="mt-4 text-white py-2 	block w-full border-transparent bg-indigo-600 hover:bg-indigo-500">Save</button>
+</div>
+
+{{ form_end(form) }}

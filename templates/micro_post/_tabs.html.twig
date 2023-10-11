@@ -1,0 +1,31 @@
+<div class="border-b border-gray-300 mb-4">
+	{% embed "shared/_tabs.html.twig" %}
+		{% block tabs %}
+			{% embed "shared/_tab.html.twig" with {route: 'app_micro_post'} %}
+				{% block path %}
+					{{ path('app_micro_post')}}
+				{% endblock %}
+				{% block content %}All Posts
+					<span class="px-2 bg-gray-200 rounded-md">{{ posts|length }}</span>
+				{% endblock %}
+			{% endembed %}
+
+			{% embed "shared/_tab.html.twig" with {route: 'app_micro_post_top_liked'} %}
+				{% block path %}
+					{{ path('app_micro_post_top_liked')}}
+				{% endblock %}
+				{% block content %}Top Liked
+				{% endblock %}
+			{% endembed %}
+
+			{% embed "shared/_tab.html.twig" with {route: 'app_micro_post_followed'} %}
+				{% block path %}
+					{{ path('app_micro_post_followed')}}
+				{% endblock %}
+				{% block content %}Followed
+				{% endblock %}
+			{% endembed %}
+
+		{% endblock %}
+	{% endembed %}
+</div>

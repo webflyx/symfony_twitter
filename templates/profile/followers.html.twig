@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello
+	{{ user.userProfile.name ?? user.email }}!
+{% endblock %}
+
+{% block bread %}
+	->
+	{{ user.userProfile.name ?? user.email }}
+{% endblock %}
+
+{% block body %}
+
+	<div class="mb-8 border-b-2 border-gray-200 ">
+		{{ include('profile/_profile_header.html.twig', { userFollowTo: user }) }}
+		{{ include('follow/_follow_button.html.twig', { userFollowTo: user }) }}
+		{{ include('profile/_profile_tabs.html.twig', { userFollowTo: user }) }}
+	</div>
+
+	{{ include('follow/_followers_list.html.twig', {users: user.followers}) }}
+
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% if users|length > 0 %}
+	{% for otherUser in users %}
+		<a href="{{ path('app_profile', {id: otherUser.id}) }}">
+			{% if otherUser.userProfile.name %}
+				<div>{{ otherUser.userProfile.name }}</div>
+			{% endif %}
+			<div class="text-gray-500 text-sm">{{ otherUser.email }}</div>
+			{{ include ("follow/_follow_button.html.twig", {userFollowTo: otherUser}) }}
+		</a>
+	{% endfor %}
+{% else %}
+	<div class="font-semibold text-center">Nothing found.</div>
+{% endif %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit post
+{% endblock %}
+
+{% block bread %}
+	->
+	<a href="{{ path('app_micro_post_one', {post: post.id}) }} ">{{ post.title }}</a>
+	-> Edit post
+{% endblock %}
+
+{% block body %}
+	{% include "micro_post/_form.html.twig" %}
+{% endblock %}
